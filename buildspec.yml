@@ -34,8 +34,8 @@ phases:
     commands:
       - echo "Output of Python code is"
       - python sample.py
-      - docker build -t 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest .
-      - docker push 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest
+      - sudo docker build -t 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest .
+      - sudo docker push 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest
 
   post_build:
     commands:
