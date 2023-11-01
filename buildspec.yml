@@ -9,7 +9,7 @@ version: 0.2
      # key: "value"
   #secrets-manager:
      # key: secret-id:json-key:version-stage:version-id
-     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifactjson-key:version-stage:version-id
   #exported-variables:
      # - variable
      # - variable
@@ -29,13 +29,19 @@ phases:
   pre_build:
     commands:
       - echo "Installed Python"
+
   build:
     commands:
       - echo "Output of Python code is"
       - python sample.py
+      - docker build -t 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest .
+      - docker push 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:latest
+
   post_build:
     commands:
       - echo "Python Program executed successfully"
+      - echo "Image has been build and pushed to ECR"
+
 #reports:
   #report-name-or-arn:
     #files:
