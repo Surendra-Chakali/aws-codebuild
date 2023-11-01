@@ -23,9 +23,6 @@ phases:
   install:
     runtime-versions:
       python: 3.11
-    #commands:
-      # - command
-      # - command
   pre_build:
     commands:
       - echo "Installed Python"
