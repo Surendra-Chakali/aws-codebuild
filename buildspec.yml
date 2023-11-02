@@ -50,7 +50,7 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 
+  #base-directory: 
 #cache:
   #paths:
     # - paths
