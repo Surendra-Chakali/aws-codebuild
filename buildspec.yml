@@ -26,13 +26,13 @@ phases:
   pre_build:
     commands:
       - echo "Installed Python"
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact
+      - aws ecr get-login-password --region ap-south-2 | docker login --username AWS --password-stdin 762714347827.dkr.ecr.ap-south-2.amazonaws.com/suriecr
   build:
     commands:
       - echo "Output of Python code is"
       - python sample.py
-      - docker build -t 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:2.0 .
-      - docker push 762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifact:2.0
+      - docker build -t 762714347827.dkr.ecr.ap-south-2.amazonaws.com/suriecr:latest .
+      - docker push 762714347827.dkr.ecr.ap-south-2.amazonaws.com/suriecr:latest
 
   post_build:
     commands:
