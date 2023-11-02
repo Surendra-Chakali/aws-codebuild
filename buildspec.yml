@@ -37,7 +37,7 @@ phases:
   post_build:
     commands:
       - echo "Python Program executed successfully"
-      - echo "Image has been build and pushed to ECR"
+      - echo "Image has been build and pushed to AWS ECR"
 
 #reports:
   #report-name-or-arn:
