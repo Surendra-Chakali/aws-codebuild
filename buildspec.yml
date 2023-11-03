@@ -1,24 +1,4 @@
 version: 0.2
-
-#env:
-  #variables:
-     # key: "value"
-     # key: "value"
-  #parameter-store:
-     # key: "value"
-     # key: "value"
-  #secrets-manager:
-     # key: secret-id:json-key:version-stage:version-id
-     # key: secret-id:762714347827.dkr.ecr.ap-south-1.amazonaws.com/surendra-ci-artifactjson-key:version-stage:version-id
-  #exported-variables:
-     # - variable
-     # - variable
-  #git-credential-helper: yes
-#batch:
-  #fast-fail: true
-  #build-list:
-  #build-matrix:
-  #build-graph:
 phases:
   install:
     runtime-versions:
@@ -26,31 +6,19 @@ phases:
   pre_build:
     commands:
       - echo "Installed Python"
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 762714347827.dkr.ecr.ap-south-1.amazonaws.com/demoproject
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY
   build:
     commands:
       - echo "Output of Python code is"
       - python sample.py
-      - docker build -t 762714347827.dkr.ecr.ap-south-1.amazonaws.com/demoproject:$CODEBUILD_BUILD_NUMBER .
-      - docker push 762714347827.dkr.ecr.ap-south-1.amazonaws.com/demoproject:$CODEBUILD_BUILD_NUMBER
+      - docker build -t $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER .
+      - docker push $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER
 
   post_build:
     commands:
       - echo "Python Program executed successfully"
       - echo "Image has been build and pushed to AWS ECR"
 
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
 artifacts:
   files:
     - '**/*'
-  #base-directory: 
-#cache:
-  #paths:
-    # - paths
